@@ -1,0 +1,104 @@
+.navigation {
+    background: linear-gradient($blue, $darkblue);
+    width: 100%;
+    height: 80px;
+    border-bottom: 5px solid black;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5),
+                15px 10px 30px rgba(0, 0, 0, 0.4),
+                -15px 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.navigation__buttons {
+    margin: 0 30px;
+    width: 30%;
+    max-width: 160px;
+}
+
+.icon {
+    width: 1rem;
+    filter: invert(100%);
+}
+
+.icon:hover {
+    filter: invert(0);
+    cursor: pointer;
+}
+
+.button__info {
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: black;
+    font-weight: bold;
+    border: 3px solid $red;
+    border-radius: 5px;
+    background: linear-gradient($button-top, $button-bottom);
+}
+
+.back__text {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+
+// main //
+.pokemon {
+    margin-top: 5rem;
+}
+
+.pokemon__sprite {
+    flex-basis: 40%;
+    max-width: 280px;
+}
+
+.pokemon__sprite-img {
+    width: 100%;
+}
+
+.pokemon__data {
+    flex-basis: 50%;
+    max-width: 500px;
+}
+
+.pkm-data {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.pokemon__data-primary {
+    height: 60px;
+    background-color: $red;
+    font-size: 24px;
+    color: white;
+}
+
+.datap__pokeball {
+    width: 50px;
+    height: 50px;
+}
+
+.datap__id {
+    margin: 0 5px;
+}
+
+.type__text {
+    font-size: 24px;
+    padding: 2px 5px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.pokemon__data-secundary {
+    background-color: white;
+}
+
+.datas:not(:last-child) {
+    border-bottom: 2px dashed $text;
+}
+
+.datas__property {
+    margin: .25rem 0;
+    color: $text;
+    text-align: right;
+}

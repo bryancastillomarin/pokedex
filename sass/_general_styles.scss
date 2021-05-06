@@ -1,0 +1,72 @@
+body {
+    font-family: 'Zen Dots', cursive;
+    
+}
+
+.container {
+    background: url(../img/pattern.jpg);
+    background-repeat: repeat;
+    background-size: contain;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-fd-r {
+    flex-direction: row;
+}
+
+.flex-fd-c {
+    flex-direction: column;
+}
+
+.flex-fd-rr {
+    flex-direction: row-reverse;
+}
+
+.flex-ai-c {
+    align-items: center;
+}
+
+.flex-ai-s {
+    align-items: flex-start;
+}
+
+.flex-ai-e {
+    align-items: flex-end;
+}
+
+.flex-jc-c {
+    justify-content: center;
+}
+
+.flex-jc-sa {
+    justify-content: space-around;
+}
+
+.flex-jc-sb {
+    justify-content: space-between;
+}
+
+.flex-jc-se {
+    justify-content: space-evenly;
+}
+
+.flex-jc-fe {
+    justify-content: flex-end;
+}
+
+.flex-jc-fs {
+    justify-content: flex-start;
+}
+
+
+

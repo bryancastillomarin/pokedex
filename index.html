@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="shortcut icon" type="image/x-icon" href="pokeball-icon.svg">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <!--Styles-->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <!--Scripts-->
+    <script src="js/pokeapi.js" type="module" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation flex flex-ai-c flex-jc-sb">
+            <div class="navigation__buttons flex flex-jc-sb flex-ai-c">
+                <div class="button">
+                    <img src="img/caret-left_5.svg" alt="previous" title="previous" class="arrow__left icon">
+                </div>
+                <div class="button">
+                    <P class="button__info">INFO</P>
+                </div>
+                <div class="button">
+                    <img src="img/caret-right_5.svg" alt="next" title="next" class="arrow__right icon">
+                </div>
+            </div>
+            <div class="navigation__buttons flex flex-jc-se">
+                <div class="button flex flex-ai-c">
+                    <img src="img/close-solid_1.svg" alt="back" title="back" class="back__img icon">
+                    <p class="back__text">BACK</p>
+                </div>
+            </div>
+        </div>
+        <div class="pokemon flex flex-ai-c flex-jc-c">
+            <div class="pokemon__sprite">
+                <img src="pokeball-icon.svg" alt="" title="" class="pokemon__sprite-img">
+            </div>
+            <div class="pokemon__data flex flex-fd-c">
+                <div class="pokemon__data-primary pkm-data flex flex-ai-c">
+                    <div class="datap">
+                        <img src="pokeball-icon.svg" alt="pokéball" title="pokéball" class="datap__pokeball">
+                    </div>
+                    <div class="datap">
+                        <p class="datap__id"></p>
+                    </div>
+                    <div class="datap">
+                        <p class="datap__name"></p>
+                    </div>
+                </div>
+                <div class="pokemon__data-type flex flex-jc-c">
+                    <div class="type">
+                        <p class="type__text pkm-data"></p>
+                    </div>
+                </div>
+                <div class="pokemon__data-secundary pkm-data flex flex-fd-c">
+                    <div class="datas flex flex-jc-sa">
+                        <p class="datas__property">HT</p>
+                        <p class="datas__property datas__height"></p>
+                    </div>
+                    <div class="datas flex flex-jc-sa">
+                        <p class="datas__property">WT</p>
+                        <p class="datas__property datas__weight"></p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--Designed by Freepik-->
