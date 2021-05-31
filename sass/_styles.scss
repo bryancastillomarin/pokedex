@@ -45,14 +45,24 @@
 // main //
 .pokemon {
     margin-top: 5rem;
+    @media (max-width: 576px) {
+        margin-top: 1rem;
+        flex-direction: column;
+    }
 }
 
 .pokemon__sprite {
     flex-basis: 40%;
-    max-width: 280px;
+    max-width: 360px;
+    @media (max-width: 576px) {
+        flex-basis: unset;
+        width: 100%;
+        max-width: 280px;
+    }
 }
 
 .pokemon__sprite-img {
+    display: block;
     width: 100%;
 }
 
