@@ -1,8 +1,14 @@
 'use strict'
 
-const url = 'https://pokeapi.co/api/v2/pokemon/';
+const URL = 'https://pokeapi.co/api/v2/pokemon/';
+const LAST_POKEMON = 898;
+const FIRST_POKEMON = 1;
 
-//elementos a renderizar
+const KEY_LEFT_ARROW  = 37; //keyword left arrow
+const KEY_RIGHT_ARROW = 39; //keyword right arrow
+const KEY_ENTER = 13; //keyword "enter"
+
+//elements to render
 const spriteDOM = document.querySelector('.pokemon__sprite-img');
 const idDOM = document.querySelector('.datap__id');
 const nameDOM = document.querySelector('.datap__name');
@@ -10,28 +16,32 @@ const typeDOM = document.querySelector('.type__text');
 const heightDOM = document.querySelector('.datas__height');
 const weightDOM = document.querySelector('.datas__weight');
 
-//llamada a la API
+//calling API
 async function fetchPokemon(id = 1) {
-    const response =  await fetch(url + id);
-    const jsonResponse =  await response.json();
-
+    const response =  await fetch(URL + id);
+    
+    if(response.status == 404)
+        throw Error('Pokemon not found');
     if(response.status !== 200)
-        throw Error('Error de conexión');
+        throw Error('Connection error');
 
+    const jsonResponse =  await response.json();
     return jsonResponse;
 }
 
-//invocar la petición
+//awaiting for request
 async function getPokemon(id) {
     try {
         const pokemon = await fetchPokemon(id);
         getData(pokemon);
+        return true;
     } catch(error) {
-        console.log(`Error: ${error}`)
+        alert('Pokemon not found');
+        return false;
     }
 }
 
-//obteniendo solo algunos datos del pokémon
+//filtering pokemon's data
 const getData = pokemon => {
     const pkmData = {
         name: pokemon.name,
@@ -41,11 +51,11 @@ const getData = pokemon => {
         type: pokemon.types[0].type.name,
         sprite: pokemon.sprites.front_default,
     }
-    //llamando a la función principal para actualizar los datos en la pantalla
+    //calling render function (sending full object)
     render(pkmData);
 }
 
-//funciones para actualizar los datos en la pantalla
+//function that renders the pokemon's data, destructuring object
 const render = ({ name, id, height, weight, type, sprite }) => {
     spriteDOM.src = sprite;
     spriteDOM.alt = `Sprite: ${name}`;
@@ -58,7 +68,7 @@ const render = ({ name, id, height, weight, type, sprite }) => {
     weightDOM.innerHTML = renderWeight(weight);
 }
 
-//imprimir el id del pokémon con 3 dígitos
+//printing pokemon's ID with 3 digits
 const renderID = id => {
     if(id < 10)
         return '00' + id;
@@ -67,28 +77,27 @@ const renderID = id => {
     return id;
 }
 
+//original height is an integer number
 const renderHeight = height => height / 10  + ' m';
 
+//original weight is an integer number
 const renderWeight = weight => weight / 10  + ' kg';
 
-//añadiendo eventos a las flechas
-const KEY_LEFT_ARROW  = 37; //flecha izquierda del teclado
-const KEY_RIGHT_ARROW = 39; //flecha derecha del teclado
+// -------------------- EVENTS -------------------- //
 
-//botones flecha de la página
+//getting arrow buttons
 const arrowLeft = document.querySelector('.arrow__left');
 const arrowRight = document.querySelector('.arrow__right');
 
-//eventos de teclado
-document.addEventListener('keydown', e => {
-    e.preventDefault();
+//keywords events
+document.addEventListener('keyup', e => {
     if(e.keyCode == KEY_LEFT_ARROW)
         previousPokemon();
     if(e.keyCode == KEY_RIGHT_ARROW)
         nextPokemon();
 });
 
-//eventos de las flechas de la página
+//arrow buttons events
 arrowLeft.addEventListener('click', () => {
     previousPokemon();
 });
@@ -97,20 +106,45 @@ arrowRight.addEventListener('click', () => {
     nextPokemon();
 });
 
-//buscar el pokémon anterior
+//looking for the previous pokemon
 const previousPokemon = () => {
-    if(globalID === 1)
-        globalID = 899;
+    if(globalID == FIRST_POKEMON) //globalID is string if updated by seeker
+        globalID = LAST_POKEMON + 1; //beacause of <<-->> operator
     getPokemon(--globalID);
 }
 
-//buscar el pokémon siguiente
+//looking for the next pokemon
 const nextPokemon = () => {
-    if(globalID === 898)
-        globalID = 0;
+    if(globalID == LAST_POKEMON) //globalID is string if updated by seeker
+        globalID = FIRST_POKEMON - 1; //because of <<++>> operator
     getPokemon(++globalID);
 }
 
-//inicializando la llamada a la API
-let globalID = 1;
+//initializing globalID (current pokemon)
+let globalID = 1; //at start shows the first pokemon
 getPokemon(globalID);
+
+// -------------------- SEEKER -------------------- //
+
+const seeker = document.querySelector('.seeker__input');
+const magnifying = document.querySelector('.magnifying-glass');
+
+//user can search pokemon by ID
+magnifying.addEventListener('click', () => {
+    searchID(seeker.value);
+});
+
+//user can also press "enter" key
+seeker.addEventListener('keyup', e => {
+    if(e.keyCode === KEY_ENTER) {
+        searchID(seeker.value);
+    }
+});
+
+const searchID = id => {
+    getPokemon(id)
+        .then(response => {
+            if(response === true)
+                globalID = id; //update globalID only if no errors
+        });
+}

@@ -19,7 +19,7 @@
 <body>
     <div class="container">
         <div class="navigation flex flex-ai-c flex-jc-sb">
-            <div class="navigation__buttons flex flex-jc-sb flex-ai-c">
+            <div class="navigation__buttons flex flex-jc-sa flex-ai-c">
                 <div class="button">
                     <img src="img/caret-left_5.svg" alt="previous" title="previous" class="arrow__left icon">
                 </div>
@@ -30,10 +30,10 @@
                     <img src="img/caret-right_5.svg" alt="next" title="next" class="arrow__right icon">
                 </div>
             </div>
-            <div class="navigation__buttons flex flex-jc-se">
-                <div class="button flex flex-ai-c">
-                    <img src="img/close-solid_1.svg" alt="back" title="back" class="back__img icon">
-                    <p class="back__text">BACK</p>
+            <div class="navigation__buttons flex">
+                <div class="seeker flex flex-ai-c">
+                    <input type="text" placeholder="Number" maxlength="3" pattern="[0-9]+" class="seeker__input button__info">
+                    <img src="img/magnifying-glass.svg" alt="back" title="back" class="magnifying-glass icon">
                 </div>
             </div>
         </div>

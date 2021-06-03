@@ -10,8 +10,8 @@
 
 .navigation__buttons {
     margin: 0 30px;
-    width: 30%;
-    max-width: 160px;
+    width: 40%;
+    max-width: 230px;
 }
 
 .icon {
@@ -35,12 +35,21 @@
     background: linear-gradient($button-top, $button-bottom);
 }
 
-.back__text {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
+.seeker {
+    flex-basis: 100%;
 }
 
+.seeker__input {
+    width: 95px;
+    &:focus {
+        outline: none;
+    }
+}
+
+.magnifying-glass {
+    width: 1.25rem;
+    margin-left: 5px;
+}
 
 // main //
 .pokemon {
